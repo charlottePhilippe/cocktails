@@ -1,7 +1,21 @@
 <app-header> </app-header>
 <div class="container">
-  <div class="row">
-  <app-cocktails-list class="col-5"></app-cocktails-list>
-  <app-cocktails-detail class="col-7"></app-cocktails-detail>
+  <app-cocktails-container></app-cocktails-container>
 </div>
+
+<!--<div class="row">
+  <div class="col-6 mx-auto">
+    <div class="row">
+      <input type="text" class="form-control col-9" #f />
+      <button class="btn btn-primary col-3" (click)="addFruit()">Ajouter</button>
+    </div>
+  </div>
 </div>
+<div class="row">
+  <ul class="list-group list-group-flush col-8 mx-auto">
+    <app-item *ngFor="let f of fruits; let i = index;" (deleteF)="deleteFruit($event)">
+        {{ fruits[i] }}
+    </app-item>
+
+  </ul>
+</div>-->
