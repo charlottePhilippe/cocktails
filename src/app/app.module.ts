@@ -10,8 +10,15 @@ import { ItemComponent } from './item/item.component';
 import { CocktailsContainerComponent } from './cocktails-container/cocktails-container.component';
 import { ColorDirective } from './shared/directives/color.directive';
 import { AddComponent } from './add/add.component';
-import { PanierComponent } from './panier/panier.component'
+import { PanierComponent } from './panier/panier.component';
+import { ActiveDirective } from './shared/directives/active.directive';
+import { Route, RouterModule } from '@angular/router';
 
+
+const app_route: Route[] = [
+  {path: '', component: AppComponent},
+  {path: 'users', component: CocktailsContainerComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +29,14 @@ import { PanierComponent } from './panier/panier.component'
     CocktailsContainerComponent,
     ColorDirective,
     AddComponent,
-    PanierComponent
+    PanierComponent,
+    ActiveDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    RouterModule.forRoot(app_route)
   ],
   providers: [],
   bootstrap: [AppComponent]
