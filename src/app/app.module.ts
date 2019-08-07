@@ -13,6 +13,8 @@ import { AddComponent } from './add/add.component';
 import { PanierComponent } from './panier/panier.component';
 import { ActiveDirective } from './shared/directives/active.directive';
 import { Route, RouterModule } from '@angular/router';
+import { PanierCocktailsComponent } from './panier-cocktails/panier-cocktails.component';
+import { IngredientsListComponent } from './panier-cocktails/ingredients-list/ingredients-list.component';
 
 
 const app_route: Route[] = [
@@ -30,7 +32,9 @@ const app_route: Route[] = [
     ColorDirective,
     AddComponent,
     PanierComponent,
-    ActiveDirective
+    ActiveDirective,
+    PanierCocktailsComponent,
+    IngredientsListComponent
   ],
   imports: [
     BrowserModule,

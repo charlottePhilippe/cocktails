@@ -10,7 +10,7 @@ export class ActiveDirective implements OnChanges{
 
   ngOnChanges() {
 if (this.isActive) {
-this.backgroundColor = 'blue';
+this.backgroundColor = '#3498db';
 this.color = 'white';
 } else {
 this.backgroundColor = 'transparent';

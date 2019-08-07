@@ -13,5 +13,14 @@
 </div>
 <hr>
 <div class="row">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let ingredient of cocktail.ingredients">
+      {{ ingredient.name }} <span class="badge badge-dark badge-pill ml-auto">{{ ingredient.quantity }}</span>
+    </li>
+  </ul>
+</div>
+<hr>
+<div class="row">
   <button class="btn btn-success">Editer le cocktail</button>
+  <button class="btn btn-secondary ml-auto">Ajouter au panier</button>
 </div>
