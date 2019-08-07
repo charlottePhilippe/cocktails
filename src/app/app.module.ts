@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CocktailsListComponent } from './cocktails-container/cocktails-list/cocktails-list.component';
@@ -12,15 +11,10 @@ import { ColorDirective } from './shared/directives/color.directive';
 import { AddComponent } from './add/add.component';
 import { PanierComponent } from './panier/panier.component';
 import { ActiveDirective } from './shared/directives/active.directive';
-import { Route, RouterModule } from '@angular/router';
 import { PanierCocktailsComponent } from './panier-cocktails/panier-cocktails.component';
 import { IngredientsListComponent } from './panier-cocktails/ingredients-list/ingredients-list.component';
+import { AppRouting } from './app-routing';
 
-
-const app_route: Route[] = [
-  {path: '', component: AppComponent},
-  {path: 'users', component: CocktailsContainerComponent}
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +32,8 @@ const app_route: Route[] = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(app_route)
+    AppRouting
   ],
   providers: [],
   bootstrap: [AppComponent]
