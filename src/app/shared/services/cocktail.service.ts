@@ -49,7 +49,13 @@ export class CocktailService {
 
   constructor() { }
 
-  selectCocktail(index: number): void {
-  this.cocktail.next(this.cocktails.value[index])
+  getCocktail(index: number): Cocktail {
+    return this.cocktails.value[index]
+  }
+
+  addCocktail(cocktail: Cocktail): void {
+    const cocktails = this.cocktails.value.slice();
+    cocktails.push(new Cocktail(cocktail.name, cocktail.img, cocktail.desc, cocktail.ingredients.map(ingredient => new Ingredients(ingredient.name, ingredient.quantity)) ));
+    this.cocktails.next(cocktails);
   }
 }

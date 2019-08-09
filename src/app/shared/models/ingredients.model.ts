@@ -1,6 +1,6 @@
 export class Ingredients {
-private name: string;
-private quantity: number;
+public name: string;
+public quantity: number;
 
     constructor(name: string, quantity: number) {
         this.name = name;
