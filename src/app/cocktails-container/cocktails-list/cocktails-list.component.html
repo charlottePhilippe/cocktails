@@ -1,7 +1,8 @@
 <div class="row">
-<div class="list-group col-12">
+<div class="list-group col-12"><input type="text" class="form-control" placeholder="chercher un cocktail" [(ngModel)]="search"/>
+  <hr>
   <a 
-  *ngFor="let cocktail of cocktails; let index = index;"
+  *ngFor="let cocktail of cocktails | filter:search ; let index = index;"
   routerLinkActive="active" [routerLink]=[index] class="list-group-item list-group-item-action">
       {{ cocktail.name }}
   </a>

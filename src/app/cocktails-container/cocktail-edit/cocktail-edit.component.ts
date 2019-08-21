@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms'
 import { CocktailService } from 'src/app/shared/services/cocktail.service';
+import { ActivatedRoute, Params } from '@angular/router'
+import { Cocktail } from 'src/app/shared/models/cocktail.model';
 
 @Component({
   selector: 'app-cocktail-edit',
@@ -9,20 +11,34 @@ import { CocktailService } from 'src/app/shared/services/cocktail.service';
 })
 
 export class CocktailEditComponent implements OnInit {
-public cocktail: FormGroup;
-  constructor(private fb: FormBuilder, private cocktailService: CocktailService) { }
+public cocktailForm: FormGroup;
+public cocktail: Cocktail;
+private edit: boolean;
+constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder, private cocktailService: CocktailService) { }
 
   ngOnInit() {
-    this.cocktail = this.fb.group({
-      name: ['', Validators.required],
-      img: ['', Validators.required],
-      desc: [''],
-      ingredients: this.fb.array([])
-    }) 
+    this.activatedRoute.params.subscribe(( params: Params ) => {
+      if (params.index) {
+        this.edit = true;
+          this.cocktail = this.cocktailService.getCocktail(params.index);
+          this.initForm(this.cocktail);
+      } else { 
+        this.initForm();
+      }
+    });
   }
 
+  initForm(cocktail = { name: '', img: '', desc: '', ingredients: []}) {
+    this.cocktailForm = this.fb.group({
+      name: [cocktail.name, Validators.required],
+      img: [cocktail.img, Validators.required],
+      desc: [cocktail.desc],
+      ingredients: this.fb.array(cocktail.ingredients.map(ingredient => this.fb.group({ name: ingredient.name, quantity: ingredient.quantity})))
+  })
+}
+
   addIngredients(): void {
-    (<FormArray>this.cocktail.get('ingredients')).push(
+    (<FormArray>this.cocktailForm.get('ingredients')).push(
       this.fb.group({
         name: [''],
         quantity: ['']
@@ -30,7 +46,11 @@ public cocktail: FormGroup;
   }
 
   addCocktail() {
-    return this.cocktailService.addCocktail(this.cocktail.value)
+    if (this.edit) {
+    return this.cocktailService.editCocktail(this.cocktailForm.value)
+    } else {
+    return this.cocktailService.addCocktail(this.cocktailForm.value)
   }
+}
 
 }

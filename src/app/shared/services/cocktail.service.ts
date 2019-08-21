@@ -58,4 +58,12 @@ export class CocktailService {
     cocktails.push(new Cocktail(cocktail.name, cocktail.img, cocktail.desc, cocktail.ingredients.map(ingredient => new Ingredients(ingredient.name, ingredient.quantity)) ));
     this.cocktails.next(cocktails);
   }
-}
+
+  editCocktail(editCocktail: Cocktail) {
+    const cocktails = this.cocktails.value.slice();
+    const index = cocktails.map( c => c.name).indexOf(editCocktail.name);
+    cocktails[index] = editCocktail;
+    this.cocktails.next(cocktails);
+    
+  }
+} 
